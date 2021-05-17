@@ -12,19 +12,15 @@ const Layout = ({ children }) => {
   return (
     <>
       <Head>
-        <title>CRM - Admin clientes</title>
+        <title>Grou</title>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         />
-        {/* <link
-          href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-          rel="stylesheet"
-        /> */}
       </Head>
 
       {router.pathname === "/login" || router.pathname === "/nuevacuenta" ? (
-        <div className="bg-blue-50 min-h-screen flex flex-col justify-center">
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex flex-col justify-center">
           <div>{children}</div>
         </div>
       ) : (
