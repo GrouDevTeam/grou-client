@@ -16,6 +16,11 @@ const Sidebar = () => {
   // Routing de nextjs
   const router = useRouter();
 
+  const cerrarSesion = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
   return (
     <aside className="bg-white sm:w-1/3 lg:w-1/5 sm:min-h-screen shadow-md">
       <div className="px-4">
@@ -120,15 +125,13 @@ const Sidebar = () => {
       </nav>
 
       <div className="w-full mt-24 flex ">
-        <Link href="/login">
-          <div className="cursor-pointer flex flex-wrap content-start bg-gradient-to-r from-blue-200 to-indigo-300 rounded-r-lg shadow-lg py-1 px-4">
-            <div>
-              <h3 className="text-gray-900 text-lg">Cerrar</h3>
-              <h3 className="-mt-2 text-gray-900 text-lg">Sesion</h3>
-            </div>
-            <CerrarSesion className="w-8 ml-3" />
-          </div>
-        </Link>
+        <div className="cursor-pointer flex flex-wrap content-start bg-gradient-to-r from-blue-200 to-indigo-300 rounded-r-lg shadow-lg py-1 px-4">
+          <button type="button" onClick={() => cerrarSesion()}>
+            <h3 className="text-gray-900 text-lg">Cerrar</h3>
+            <h3 className="-mt-2 text-gray-900 text-lg">Sesion</h3>
+          </button>
+          <CerrarSesion className="w-8 ml-3" />
+        </div>
         <Link href="configuracion">
           <Configuracion className="w-8 ml-12 cursor-pointer" />
         </Link>
