@@ -60,6 +60,13 @@ const Login = () => {
           mensaje: "Error al iniciar sesion",
         });
         console.log(error);
+
+        setTimeout(() => {
+          SetMensaje({
+            estado: null,
+            mensaje: null,
+          });
+        }, 3000);
       }
     },
   });
@@ -67,13 +74,13 @@ const Login = () => {
   const mostrarMensaje = () => {
     if (mensaje.estado) {
       return (
-        <div className="bg-green-200 px-3 my-5 py-4 max-w-sm text-center mx-auto rounded shadow text-xl text-green-700 border-2 border-green-700">
+        <div className="bg-green-200 px-3 my-5 mx-3 py-4 max-w-sm text-center  rounded shadow text-xl text-green-700 border-2 border-green-700">
           <p>{mensaje.mensaje}</p>
         </div>
       );
     }
     return (
-      <div className="bg-red-200 px-3 my-5 py-4 max-w-sm text-center mx-auto rounded shadow text-xl text-red-700 border-2 border-red-700">
+      <div className="bg-red-200 px-3 my-5 mx-3 py-4 max-w-sm text-center  rounded shadow text-xl text-red-700 border-2 border-red-700">
         <p>{mensaje.mensaje}</p>
       </div>
     );
@@ -81,84 +88,73 @@ const Login = () => {
 
   return (
     <Layout>
-      {mensaje.mensaje && mostrarMensaje()}
-      <div className="relative h-96 flex flex-col justify-end md:bg-gray-50 rounded-lg m-36 mx-80">
-        <div class="absolute grid grid-cols-2 gap-2">
-          <div className="rounded-lg m-3 bg-white shadow-xl w-80">
-            <div className="flex justify-center mt-4">
-              <Usuario className="w-16" />
-            </div>
-            <h1 className="text-center font-bold text-2xl text-blue-900 mt-1 mb-3">
-              Iniciar Sesión
-            </h1>
-            <form className="px-2" onSubmit={formik.handleSubmit}>
-              <div className="mb-1">
-                <label
-                  htmlFor="email"
-                  className="block text-gray-700 text-md font-normal"
-                >
-                  Usuario:
-                </label>
-                <input
-                  id="usuario"
-                  type="text"
-                  placeholder="Nombre de usuario"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.usuario}
-                  className="border-b-2 border-red-900 appearance-none w-full py-2 text-gray-700 leading-tight focus:outline-mone focus:shadow-outline"
-                />
-              </div>
+      <div className="m-5">
+        <Image src="/groutse.png" width={300} height={80} quality={100} />
+
+        <div className="bg-white pt-2 mt-12 rounded-md shadow">
+          {mensaje.mensaje && mostrarMensaje()}
+          <div className="flex justify-center mt-4">
+            <Usuario className="w-16" />
+          </div>
+          <h1 className=" my-3 text-center text-blue-900 font-medium text-xl">
+            Iniciar Sesión
+          </h1>
+          <form onSubmit={formik.handleSubmit} className="px-5 py-2">
+            <div className="mb-3">
+              <label
+                htmlFor="email"
+                className="block text-gray-700 text-md font-normal "
+              >
+                Usuario:
+              </label>
+              <input
+                id="usuario"
+                type="text"
+                placeholder="Nombre de usuario"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.usuario}
+                className="border-b-2 border-red-900 appearance-none w-full py-2 text-gray-700 leading-tight focus:outline-mone focus:shadow-outline"
+              />
               {formik.touched.usuario && formik.errors.usuario ? (
-                <div className=" my-0 text-red-700  leading-4 rounded">
+                <div className=" mt-1 text-red-700  leading-4 rounded">
                   <p>{formik.errors.usuario}</p>
                 </div>
               ) : null}
+            </div>
 
-              <div className="mb-1">
-                <label
-                  htmlFor="password"
-                  className="block text-gray-700 text-md font-normal"
-                >
-                  Contraseña:
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Contraseña de usuario"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  className="border-b-2 border-red-900 appearance-none w-full py-2 text-gray-700 leading-tight focus:outline-mone focus:shadow-outline"
-                />
-              </div>
+            <div className="mb-3">
+              <label
+                htmlFor="password"
+                className="block text-gray-700 text-md font-normal"
+              >
+                Contraseña:
+              </label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Contraseña de usuario"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                className="border-b-2 border-red-900 appearance-none w-full py-2 text-gray-700 leading-tight focus:outline-mone focus:shadow-outline"
+              />
               {formik.touched.password && formik.errors.password ? (
-                <div className=" my-0  text-red-700 leading-4 rounded">
+                <div className=" mt-1  text-red-700 leading-4 rounded">
                   <p>{formik.errors.password}</p>
                 </div>
               ) : null}
+            </div>
 
-              <div className="flex justify-center p-1">
-                <button
-                  className="my-4 rounded-full bg-blue-900 text-lg font-medium text-white shadow w-2/3 h-10"
-                  type="submit"
-                >
-                  Iniciar Sesión
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <Image
-            src="/logo-grou.png"
-            width={100}
-            height={100}
-            className="object-none"
-          />
-        </div>
-
-        <div className="flex flex-col justify-end bg-blue-900 w-full h-24 rounded-b-lg">
-          <div className="bg-red-800 w-full h-14 rounded-lg"></div>
+            <div className="flex justify-center">
+              <button
+                className="my-4 rounded-full bg-blue-900 text-lg font-medium text-white shadow w-4/5 h-10 hover:bg-blue-800"
+                type="submit"
+              >
+                Iniciar Sesión
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </Layout>
